@@ -7,9 +7,33 @@
  @Date: 2019-02-16 15:20
  @Description:
 """
+import os
+import random
 
 
 class MovieTop(object):
-	def __init__(self):
-		self.start = 0
+    def __init__(self, name):
+        self.name = name
 
+
+class P:
+    count = 0
+
+
+if __name__ == '__main__':
+    a = MovieTop('adfadsf')
+    print(a.name)
+    a = P()
+    b = P()
+    c = P()
+    P.count+=100
+    c.count += 1
+    # print(a.count)
+    # print(b.count)
+    # print(c.count)
+
+    import requests
+    res=requests.get('http://www.baidu.com',{'wdqq':'a'})
+    print(res.status_code)
+    print(res.text)
+    print(dir(res))
