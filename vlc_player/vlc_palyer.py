@@ -14,6 +14,7 @@ import tkinter as tk
 import sqlite3
 import requests
 import re
+#pip3 install PyExecJS
 import execjs
 import time
 import hashlib
@@ -22,6 +23,9 @@ from tkinter import ttk
 
 os.environ['PYTHON_VLC_MODULE_PATH'] = "./vlc-3.0.8"
 import vlc
+
+
+# python -m pip install python-vlc
 
 
 # os.environ['PYTHON_VLC_LIB_PATH'] = './vlc-3.0.8/libvlc.dll'
@@ -133,7 +137,7 @@ def get_sign(rid, post_v, tt, ub9):
 	res2 = docjs.call('ub98484234')
 	str3 = re.sub(r'\(function[\s\S]*toString\(\)', '\'', res2)
 	md5rb = hashlib.md5((rid + '10000000000000000000000000001501' + tt + '2501' +
-						 post_v).encode('utf-8')).hexdigest()
+	                     post_v).encode('utf-8')).hexdigest()
 	str4 = 'function get_sign(){var rb=\'' + md5rb + str3
 	str5 = re.sub(r'return rt;}[\s\S]*', 'return re;};', str4)
 	str6 = re.sub(r'"v=.*&sign="\+', '', str5)
@@ -415,7 +419,7 @@ class App(tk.Tk):
 		tk.Button(frame, text="新增", command=lambda: self.click(4)).pack(anchor='nw', side=tk.TOP, padx=10, pady=8)
 		tk.Button(frame, text="删除", command=lambda: self.click(5)).pack(anchor='nw', side=tk.TOP, padx=10, pady=8)
 		tk.Button(frame, text="清  空", bg='deeppink', command=lambda: self.click(6)).pack(anchor='nw', side=tk.TOP,
-																						 padx=10, pady=8)
+		                                                                                 padx=10, pady=8)
 		tk.Button(frame, text="隐藏列表", command=lambda: self.click(7)).pack(anchor='nw', side=tk.TOP, padx=2, pady=8)
 		tk.Button(frame, text="显示列表", command=lambda: self.click(8)).pack(anchor='nw', side=tk.TOP, padx=2, pady=8)
 		frame.pack_propagate(0)
@@ -463,7 +467,7 @@ class App(tk.Tk):
 		elif action == 3:  # 加载所有主播的状态
 			# 添加数据
 			threading.Thread(target=load_tree).start()
-			# load_tree()
+		# load_tree()
 		elif action == 4:
 			# print(comboxlist.get(),comboxlist.current())
 			list_index = comboxlist.current()
@@ -487,7 +491,7 @@ class App(tk.Tk):
 						douyu_url = get_douyu_url(room_id)
 						state = 1 if douyu_url else 0
 						db.executeUpdate('INSERT INTO room (platform,room_id,name, real_url,state) VALUES (?,?,?,?,?)',
-										 [(list_index, room_id, room_name, douyu_url, state)])
+						                 [(list_index, room_id, room_name, douyu_url, state)])
 					if list_index == 1:
 						try:
 							huya_url = get_huya_url(room_id)
