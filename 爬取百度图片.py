@@ -10,6 +10,7 @@ file = ''
 List = []
 
 
+# 正在检测图片总数
 def Find(url):
 	global List
 	print('正在检测图片总数，请稍等.....')
